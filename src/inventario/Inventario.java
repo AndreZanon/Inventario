@@ -40,6 +40,8 @@ public class Inventario {
         System.out.println(p5.toString());
         System.out.println(p6.toString());
         
+        System.out.println("testeGIt");
+        
     }
 
 }
