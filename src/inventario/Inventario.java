@@ -5,6 +5,8 @@
  */
 package inventario;
 
+import java.util.Scanner;
+
 /**
  *
  * @author André Zanon
@@ -16,13 +18,15 @@ public class Inventario {
      */
     public static void main(String[] args) {
 
+        Scanner in = new Scanner(System.in);
+
         Produto p1 = new Produto(1, "Cerveja", 2.99, 13);
         Produto p2 = new Produto(2, "Queijo", 1.20, 56);
         Produto p3 = new Produto(3, "Salame", 4.60, 24);
         Produto p4 = new Produto(4, "Biscoito", 8.88, 88);
         Produto p5 = new Produto();
         Produto p6 = new Produto();
-
+        
         p5.setId(5);
         p5.setNome("Yogurte");
         p5.setPreco(0.80);
@@ -32,16 +36,51 @@ public class Inventario {
         p6.setNome("Controle Remoto");
         p6.setPreco(57.99);
         p6.setEstoque(2);
+        p6.setAtivo(false);
+
+        String tempName;
+        int tempNumber, tempQty;
+        double tempPrice;
+
+//        System.out.println("Nome do Produto");
+//        tempName = in.next();
+//
+//        System.out.println("Numero");
+//        tempNumber = in.nextInt();
+//
+//        System.out.println("Quantidade");
+//        tempQty = in.nextInt();
+//
+//        System.out.println("Preço");
+//        tempPrice = in.nextDouble();
+//
+//        Produto p7 = new Produto(tempNumber, tempName, tempPrice, tempQty);
+//        
+//        in.nextLine();
+//        
+//        System.out.println("Nome do Produto");
+//        tempName = in.next();
+//
+//        System.out.println("Numero");
+//        tempNumber = in.nextInt();
+//
+//        System.out.println("Quantidade");
+//        tempQty = in.nextInt();
+//
+//        System.out.println("Preço");
+//        tempPrice = in.nextDouble();
+//
+//        Produto p8 = new Produto(tempNumber, tempName, tempPrice, tempQty);
 
         System.out.println(p1.toString());
         System.out.println(p2.toString());
-        System.out.println(p3.toString());
-        System.out.println(p4.toString());
-        System.out.println(p5.toString());
-        System.out.println(p6.toString());
-        
-        System.out.println("testeGIt");
-        
+//        System.out.println(p3.toString());
+//        System.out.println(p4.toString());
+//        System.out.println(p5.toString());
+//        System.out.println(p6.toString());
+//        System.out.println(p7.toString());
+//        System.out.println(p8.toString());
+
     }
 
 }

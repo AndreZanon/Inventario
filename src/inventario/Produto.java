@@ -5,17 +5,31 @@
  */
 package inventario;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 /**
  *
  * @author André Zanon
  */
 public class Produto {
 
+    private DecimalFormat df2 = new DecimalFormat("#.##");
+            
 //    Declaração dos campos de instância
     private int id;
     private String nome;
     private double preco;
     private int estoque;
+    private boolean ativo  = true;
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 
     public Produto() {}
 
@@ -58,6 +72,10 @@ public class Produto {
         this.estoque = estoque;
     }
     
+    public double getInventoryValue(){
+    
+        return this.getEstoque() * this.getPreco();
+    }
     
     @Override
     public String toString(){
@@ -65,7 +83,9 @@ public class Produto {
         String description = "Número do Item : "+ this.getId()+"\n" +
                              "Nome : "+this.getNome()+"\n"+
                              "Quantidade em estoque : "+this.getEstoque()+"\n" +
-                             "Preço : " + this.getPreco() + "\n";
+                             "Preço : " + this.getPreco() + "\n" +
+                             "Status do Produto : " + (this.isAtivo() ? "Ativo" : "Inativo") + "\n" +
+                             "Valor do Estoque : " + this.df2.format( this.getInventoryValue()) + "\n";
         
         return description;
     
