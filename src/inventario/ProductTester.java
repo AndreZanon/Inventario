@@ -36,6 +36,8 @@ public class ProductTester {
             } while (menuChoice != 0);
 
             displayInventory(produtos);
+
+            System.out.println("\n FIM DA EXECUÇÃO");
         }
     }
 
@@ -88,11 +90,87 @@ public class ProductTester {
     }
 
     private static int getMenuOptions(Scanner in) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        int menuChoice = -1;
+
+        do {
+            in.nextLine();
+            System.out.println("1. Exibir Inventário\n"
+                    + "2. Adicionar Estoque\n"
+                    + "3. Deduzir Estoque\n"
+                    + "4. Descontinuar Produto\n"
+                    + "0. Sair\n"
+                    + "Insira uma opção de menu:");
+
+            menuChoice = in.nextInt();
+
+        } while (menuChoice < 0 || menuChoice > 4);
+
+        return menuChoice;
+
+    }
+
+    private static int getProductNumber(Produto[] produtos, Scanner in) {
+
+        int productNumber = -1;
+
+        do {
+            try {
+                in.nextLine();
+                for (Produto prod : produtos) {
+                    System.out.println("Escolha o Produto : ");
+                    System.out.println(prod.getId() + " : " + prod.getNome());
+
+                }
+
+                productNumber = in.nextInt();
+                if (productNumber < 0 || productNumber > 4) {
+                    System.out.println("Valor incorreto inserido");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Tipo incorreto de dados inserido!");
+                in.nextLine();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+                in.nextLine();
+            }
+
+        } while (productNumber < 0 || productNumber > 4);
+
+        return productNumber;
+
     }
 
     private static void executeMenuChoice(int menuChoice, Produto[] produtos, Scanner in) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (menuChoice) {
+            case 1:
+                System.out.println("Exibir Lista de Produtos");
+                displayInventory(produtos);
+                break;
+            case 2:
+                System.out.println("Adicionar Estoque");
+                break;
+            case 3:
+                System.out.println("Deduzir Estoque");
+                break;
+            case 4:
+                System.out.println("Descontinuar Estoque");
+                discontinueInventory(produtos, in);
+                break;
+        }
+    }
+
+    private static void discontinueInventory(Produto[] produtos, Scanner in) {
+        int productChoice;
+
+        productChoice = getProductNumber(produtos, in);
+
+        for (int i = 0; i < produtos.length; i++) {
+            if (produtos[i].getId() == productChoice) {
+                produtos[i].setAtivo();
+            }
+        }
+
     }
 
     private static void displayInventory(Produto[] produtos) {

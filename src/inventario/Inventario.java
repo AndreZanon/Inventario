@@ -28,7 +28,7 @@ public class Inventario {
         p6.setNome("Controle Remoto");
         p6.setPreco(57.99);
         p6.setEstoque(2);
-        p6.setAtivo(false);
+        p6.setAtivo();
 
         String tempName;
         int tempNumber, tempQty;

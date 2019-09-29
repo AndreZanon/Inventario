@@ -15,23 +15,25 @@ import java.text.DecimalFormat;
 public class Produto {
 
     private DecimalFormat df2 = new DecimalFormat("#.##");
-            
+
 //    Declaração dos campos de instância
     private int id;
     private String nome;
     private double preco;
     private int estoque;
-    private boolean ativo  = true;
+    private boolean ativo = true;
 
     public boolean isAtivo() {
         return ativo;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setAtivo() {
+        this.ativo = !this.ativo;
+        System.out.println(this.nome+ " status : " +(this.isAtivo() ? "Ativo" : "Inativo"));
     }
 
-    public Produto() {}
+    public Produto() {
+    }
 
     public Produto(int id, String nome, double preco, int estoque) {
         this.id = id;
@@ -71,24 +73,32 @@ public class Produto {
     public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
-    
-    public double getInventoryValue(){
-    
+
+    public double getInventoryValue() {
+
         return this.getEstoque() * this.getPreco();
     }
-    
+
     @Override
-    public String toString(){
-    
-        String description = "Número do Item : "+ this.getId()+"\n" +
-                             "Nome : "+this.getNome()+"\n"+
-                             "Quantidade em estoque : "+this.getEstoque()+"\n" +
-                             "Preço : " + this.getPreco() + "\n" +
-                             "Status do Produto : " + (this.isAtivo() ? "Ativo" : "Inativo") + "\n" +
-                             "Valor do Estoque : " + this.df2.format( this.getInventoryValue()) + "\n";
-        
+    public String toString() {
+
+        String description = "Número do Item : " + this.getId() + "\n"
+                + "Nome : " + this.getNome() + "\n"
+                + "Quantidade em estoque : " + this.getEstoque() + "\n"
+                + "Preço : " + this.getPreco() + "\n"
+                + "Status do Produto : " + (this.isAtivo() ? "Ativo" : "Inativo") + "\n"
+                + "Valor do Estoque : " + this.df2.format(this.getInventoryValue()) + "\n";
+
         return description;
-    
+
+    }
+
+    public void addToInventory(int qtd) {
+        this.estoque = this.estoque + qtd;
+    }
+
+    public void deductFromInventory(int qtd) {
+        this.estoque = this.estoque - qtd;
     }
 
 }
