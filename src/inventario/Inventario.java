@@ -5,6 +5,7 @@
  */
 package inventario;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -21,16 +22,7 @@ public class Inventario {
         Scanner in = new Scanner(System.in);
 
         Produto p1 = new Produto(1, "Cerveja", 2.99, 13);
-        Produto p2 = new Produto(2, "Queijo", 1.20, 56);
-        Produto p3 = new Produto(3, "Salame", 4.60, 24);
-        Produto p4 = new Produto(4, "Biscoito", 8.88, 88);
-        Produto p5 = new Produto();
         Produto p6 = new Produto();
-        
-        p5.setId(5);
-        p5.setNome("Yogurte");
-        p5.setPreco(0.80);
-        p5.setEstoque(19);
 
         p6.setId(6);
         p6.setNome("Controle Remoto");
@@ -71,15 +63,39 @@ public class Inventario {
 //        tempPrice = in.nextDouble();
 //
 //        Produto p8 = new Produto(tempNumber, tempName, tempPrice, tempQty);
-
-        System.out.println(p1.toString());
-        System.out.println(p2.toString());
-//        System.out.println(p3.toString());
-//        System.out.println(p4.toString());
-//        System.out.println(p5.toString());
+//        System.out.println(p1.toString());
 //        System.out.println(p6.toString());
-//        System.out.println(p7.toString());
-//        System.out.println(p8.toString());
+//
+//        int maxSize = -1;
+//        do {
+//
+//            try {
+//                System.out.println("Quantos Produtos? 0 para nenhum");
+//                maxSize = in.nextInt();
+//                if (maxSize < 0) {
+//                    System.out.println("Valor incorreto inserido");
+//                }
+//                in.nextLine();
+//            } catch (InputMismatchException e) {
+//                System.out.println(" Tipo incorreto de dados inserido!");
+//            } catch (Exception e) {
+//                System.out.println(e.toString());
+//                in.nextLine();
+////                System.exit(1);
+//            }
+//
+//        } while (maxSize < 0);
+//        
+        int array[][] = {{2, 2, 2}, {2, 2, 0}};
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (array[i][j] == 0 && j == 2) {
+                    System.out.println(array[i][j]);
+                }
+            }
+
+        }
 
     }
 
