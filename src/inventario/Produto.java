@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
  */
 public class Produto {
 
-    private DecimalFormat df2 = new DecimalFormat("#.##");
+    protected DecimalFormat df2 = new DecimalFormat("#.##");
 
 //    Declaração dos campos de instância
     private int id;

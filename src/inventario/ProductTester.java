@@ -94,6 +94,78 @@ public class ProductTester {
         }
     }
 
+    private static void addCDToInventory(Produto[] produtos, Scanner in) {
+
+        for (int i = 0; i < produtos.length; i++) {
+            in.nextLine();
+            String tempName, tempArtista, tempSelo;
+            int tempNumber, tempQty, tempMusicas;
+            double tempPrice;
+
+            System.out.println("Nome do CD");
+            tempName = in.next();
+
+            System.out.println("Nome do Artista");
+            tempArtista = in.next();
+
+            System.out.println("Nome do Selo");
+            tempSelo = in.next();
+
+            System.out.println("Numero de Músicas");
+            tempMusicas = in.nextInt();
+
+            System.out.println("Numero");
+            tempNumber = in.nextInt();
+
+            System.out.println("Quantidade");
+            tempQty = in.nextInt();
+
+            System.out.println("Preço");
+            tempPrice = in.nextDouble();
+
+            CD p7 = new CD(tempNumber, tempName, tempPrice, tempQty, tempArtista, tempSelo, tempMusicas);
+
+            produtos[i] = p7;
+
+        }
+    }
+
+    private static void addDVDToInventory(Produto[] produtos, Scanner in) {
+
+        for (int i = 0; i < produtos.length; i++) {
+            in.nextLine();
+            String tempName, tempEstudio;
+            int tempNumber, tempQty, tempDuracao, tempEtaria;
+            double tempPrice;
+
+            System.out.println("Nome do DVD");
+            tempName = in.next();
+
+            System.out.println("Nome do Estudio");
+            tempEstudio = in.next();
+
+            System.out.println("Tempo de Duração");
+            tempDuracao = in.nextInt();
+
+            System.out.println("Faixa Etária");
+            tempEtaria = in.nextInt();
+
+            System.out.println("Numero");
+            tempNumber = in.nextInt();
+
+            System.out.println("Quantidade");
+            tempQty = in.nextInt();
+
+            System.out.println("Preço");
+            tempPrice = in.nextDouble();
+
+            DVD p7 = new DVD(tempDuracao, tempEtaria, tempEstudio, tempNumber, tempName, tempPrice, tempQty);
+
+            produtos[i] = p7;
+
+        }
+    }
+
     private static int getMenuOptions(Scanner in) {
 
         int menuChoice = -1;
@@ -126,7 +198,7 @@ public class ProductTester {
             try {
                 in.nextLine();
                 System.out.println("Escolha o Produto : ");
-                
+
                 for (int i = 0; i < produtos.length; i++) {
                     System.out.println(i + " : " + produtos[i].getNome());
                 }

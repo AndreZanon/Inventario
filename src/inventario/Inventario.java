@@ -19,6 +19,10 @@ public class Inventario {
      */
     public static void main(String[] args) {
 
+        int n = 13;
+        n = n + 8;
+        System.out.println(" teste " + (12 /21));
+
         Scanner in = new Scanner(System.in);
 
         Produto p1 = new Produto(1, "Cerveja", 2.99, 13);
