@@ -59,12 +59,17 @@ public class ProductTester {
             }
         } while (maxSize < 0);
 
-        return maxSize;
+        return maxSize + 4;
     }
 
     private static void addToInventory(Produto[] produtos, Scanner in) {
 
-        for (int i = 0; i < produtos.length; i++) {
+        produtos[0] = new Produto(45, "Cerveja", 2.99, 13);
+        produtos[1] = new Produto(46, "Celular", 40, 18);
+        produtos[2] = new Produto(47, "Cadeira", 23, 45);
+        produtos[3] = new Produto(48, "Mesa", 200, 20);
+
+        for (int i = 4; i < produtos.length; i++) {
             in.nextLine();
             String tempName;
             int tempNumber, tempQty;
@@ -95,12 +100,15 @@ public class ProductTester {
 
         do {
             in.nextLine();
-            System.out.println("1. Exibir Inventário\n"
+            System.out.println("=============================== \n"
+                    + "1. Exibir Inventário\n"
                     + "2. Adicionar Estoque\n"
                     + "3. Deduzir Estoque\n"
                     + "4. Descontinuar Produto\n"
                     + "0. Sair\n"
-                    + "Insira uma opção de menu:");
+                    + "Insira uma opção de menu:\n"
+                    + "======================================="
+            );
 
             menuChoice = in.nextInt();
 
@@ -117,14 +125,14 @@ public class ProductTester {
         do {
             try {
                 in.nextLine();
-                for (Produto prod : produtos) {
-                    System.out.println("Escolha o Produto : ");
-                    System.out.println(prod.getId() + " : " + prod.getNome());
-
+                System.out.println("Escolha o Produto : ");
+                
+                for (int i = 0; i < produtos.length; i++) {
+                    System.out.println(i + " : " + produtos[i].getNome());
                 }
 
                 productNumber = in.nextInt();
-                if (productNumber < 0 || productNumber > 4) {
+                if (productNumber < 0 || productNumber > produtos.length) {
                     System.out.println("Valor incorreto inserido");
                 }
             } catch (InputMismatchException e) {
@@ -135,7 +143,7 @@ public class ProductTester {
                 in.nextLine();
             }
 
-        } while (productNumber < 0 || productNumber > 4);
+        } while (productNumber < 0 || productNumber > produtos.length);
 
         return productNumber;
 
@@ -149,9 +157,11 @@ public class ProductTester {
                 break;
             case 2:
                 System.out.println("Adicionar Estoque");
+                addInventory(produtos, in);
                 break;
             case 3:
                 System.out.println("Deduzir Estoque");
+                reduceInventory(produtos, in);
                 break;
             case 4:
                 System.out.println("Descontinuar Estoque");
@@ -160,13 +170,81 @@ public class ProductTester {
         }
     }
 
+    private static void addInventory(Produto[] produtos, Scanner in) {
+        int productChoice;
+        int qtd = -1;
+
+        productChoice = getProductNumber(produtos, in);
+
+        do {
+            in.nextLine();
+            try {
+                System.out.println("Insira quantidade à acrescentar...");
+                qtd = in.nextInt();
+            } catch (Exception e) {
+                System.out.println("Entrada inválida");
+            }
+
+            if (qtd < 0) {
+                System.out.println("Necessário valor maior que 0!");
+            }
+
+        } while (qtd < 0);
+
+        for (int i = 0; i < produtos.length; i++) {
+            if (i == productChoice) {
+                produtos[i].addToInventory(qtd);
+            }
+        }
+
+    }
+
+    private static void reduceInventory(Produto[] produtos, Scanner in) {
+        int productChoice;
+        int maxReduceValue = 0;
+        int qtd = -1;
+
+        productChoice = getProductNumber(produtos, in);
+
+        for (Produto prod : produtos) {
+            if (prod.getId() == productChoice) {
+                maxReduceValue = prod.getEstoque();
+            }
+        }
+
+        do {
+            in.nextLine();
+            try {
+                System.out.println("Insira quantidade à deduzir... menor que " + maxReduceValue);
+                qtd = in.nextInt();
+            } catch (Exception e) {
+                System.out.println("Entrada inválida");
+            }
+
+            if (qtd < 0) {
+                System.out.println("Necessário valor maior que 0!");
+            }
+            if (qtd > maxReduceValue) {
+                System.out.println("Valor de entrada extende estoque registrado!");
+            }
+
+        } while (qtd < 0 && qtd > maxReduceValue);
+
+        for (int i = 0; i < produtos.length; i++) {
+            if (i == productChoice) {
+                produtos[i].deductFromInventory(qtd);
+            }
+        }
+
+    }
+
     private static void discontinueInventory(Produto[] produtos, Scanner in) {
         int productChoice;
 
         productChoice = getProductNumber(produtos, in);
 
         for (int i = 0; i < produtos.length; i++) {
-            if (produtos[i].getId() == productChoice) {
+            if (i == productChoice) {
                 produtos[i].setAtivo();
             }
         }
