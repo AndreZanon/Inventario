@@ -45,7 +45,7 @@ public class ProductTester {
         int maxSize = -1;
         do {
             try {
-                System.out.println("Quantos Produtos? 0 para nenhum");
+                System.out.println("Quantos Produtos? 0 para nenhum 4 já adicionados para teste");
                 maxSize = in.nextInt();
                 if (maxSize < 0) {
                     System.out.println("Valor incorreto inserido");
